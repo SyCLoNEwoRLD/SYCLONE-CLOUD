@@ -1,0 +1,36 @@
+SYCLONE CLOUD — Licence
+
+Copyright (c) 2026 SyCLoNEwoRLD (https://github.com/SyCLoNEwoRLD). All rights reserved.
+
+"The Software" means SYCLONE CLOUD, its program COMBIND included: the programs, web applications and other files
+published in the releases of https://github.com/SyCLoNEwoRLD/SYCLONE-CLOUD, and the documentation, scripts
+and examples in that repository.
+
+1. Permission. You may download the Software, install it and use it, free of charge, on computers
+   and servers you own or control — for yourself, your family or your organisation. You may adapt
+   the scripts, configuration and examples for your own installations.
+
+2. Restrictions. You may not:
+   a. sell, rent or license the Software, charge for access to it, or run it as a paid service
+      for others;
+   b. distribute copies of the Software, changed or not, other than by pointing to the
+      repository above;
+   c. decompile, disassemble or otherwise reverse engineer the programs, or modify them, except
+      where the applicable law allows this despite this restriction;
+   d. remove or change any copyright, licence or attribution notice.
+
+3. Third-party components. The Software includes open-source components, listed with their
+   licences in THIRD-PARTY-NOTICES.md. Each is licensed under its own terms; nothing in this
+   licence limits what those terms allow you to do with those components.
+
+4. Your responsibility. You are responsible for your server, your data and your use of other
+   services with the Software, including the terms of the Google accounts you connect.
+
+5. No warranty. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+   PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+   LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING LOSS OF DATA, WHETHER IN AN ACTION
+   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+   USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. Termination. This permission ends automatically for anyone who breaks these terms.

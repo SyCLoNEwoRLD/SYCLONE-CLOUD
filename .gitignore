@@ -1,0 +1,3 @@
+# Your installation's settings stay yours.
+deploy/site.env
+.DS_Store

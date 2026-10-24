@@ -1,0 +1,25 @@
+# COMBIND ULTRA CLOUD hub configuration (/etc/combind/hub.toml, root:combind 0640).
+# Rendered from deploy/templates/hub.toml.in at the first installation and then kept: edit it on
+# the server (for example to add [google]) and run `systemctl restart combind-hub`.
+
+[user_portal]
+listen = "127.0.0.1:@USER_PORT@"
+public_origin = "https://@USER_HOST@"
+static_dir = "/opt/combind/current/web/portal"
+
+[admin_portal]
+listen = "127.0.0.1:@ADMIN_PORT@"
+public_origin = "https://@ADMIN_HOST@"
+static_dir = "/opt/combind/current/web/admin"
+
+[storage]
+data_dir = "/var/lib/combind"
+
+[runtime]
+worker_threads = 2
+log_format = "json"
+
+# Added once the Google OAuth client exists (the guide: docs/google.md):
+# [google]
+# client_id = "…apps.googleusercontent.com"
+# client_secret = "…"

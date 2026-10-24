@@ -1,0 +1,21 @@
+# COMBIND ULTRA CLOUD — stage 1: plain HTTP for the certificate challenge only. Installed as
+# /etc/nginx/sites-available/zzz-combind until the certificate exists, then replaced by the full
+# site. Only the two COMBIND host names are matched: no other site changes.
+
+server {
+    listen 80;
+    server_name @USER_HOST@ @ADMIN_HOST@;
+    server_tokens off;
+
+    # Only certificate challenges come here: nothing worth logging, and no query strings kept.
+    access_log off;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/combind-acme;
+        default_type text/plain;
+    }
+
+    location / {
+        return 404;
+    }
+}

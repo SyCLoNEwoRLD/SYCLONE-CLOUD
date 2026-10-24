@@ -1,0 +1,71 @@
+# COMBIND ULTRA CLOUD hub. Installed by deploy/remote.sh as /etc/systemd/system/combind-hub.service.
+#
+# The VPS also runs business services, so the hub is capped well below them (memory, CPU, I/O,
+# tasks) and confined: it may write only to its own state directory, holds no capabilities, and
+# listens on loopback only (nginx terminates TLS in front of it).
+
+[Unit]
+Description=COMBIND ULTRA CLOUD hub
+After=network-online.target
+Wants=network-online.target
+# Never give up: after a reboot or a network outage the hub is started again every few seconds
+# until it runs (systemd's default stops after five failures in ten seconds).
+StartLimitIntervalSec=0
+
+[Service]
+Type=exec
+User=combind
+Group=combind
+ExecStart=/opt/combind/current/bin/combind-hub --config /etc/combind/hub.toml
+Restart=always
+RestartSec=5s
+TimeoutStopSec=30s
+
+# Resources: business services on this machine always come first. The data path relays shard
+# pieces and pack ranges in memory (at most ~600 MB with every relay and read slot busy and a
+# parity rebuild running): throttled from 1 GiB, stopped at 1.5 GiB.
+MemoryHigh=1G
+MemoryMax=1536M
+CPUQuota=150%
+CPUWeight=50
+IOWeight=50
+TasksMax=256
+Nice=5
+LimitNOFILE=8192
+
+# Files: read-only system, private /tmp, writable state directory only.
+StateDirectory=combind
+StateDirectoryMode=0700
+UMask=0077
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ReadOnlyPaths=/opt/combind
+
+# Kernel and process confinement.
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RemoveIPC=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
